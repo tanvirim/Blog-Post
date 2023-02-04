@@ -53,6 +53,24 @@ app.post("/compose", function (req,res) {
 
   res.redirect("/") ;
 
+})
+
+app.get("/post/:postName",(req,res)=>{
+  const requestedTitle = _.lowerCase(req.params.postName) ;
+
+
+ postDetailsArray.forEach((post)=>{
+  const postTitle = _.lowerCase(post.postTitle);
+  
+  if( postTitle === requestedTitle){
+    res.render("post", {
+      requestedTitle:requestedTitle ,
+      postContent: post.postContent
+    })
+  }
+})
+
+
 
 })
 
